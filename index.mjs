@@ -38,6 +38,15 @@ const sleep = (ms) => new Promise((res) => setTimeout(() => res(), ms));
     } catch (e) {
       console.error(e);
     }
+
+    try {
+      for (const script of content.querySelectorAll('script')) {
+        script.remove();
+      }
+    } catch (e) {
+      console.error(e);
+    }
+
     try {
       for (const img of content.querySelectorAll('img')) {
         const src = img.getAttribute('src');

@@ -13,6 +13,7 @@ import 'isomorphic-fetch';
 import nodemailer from 'nodemailer';
 
 const BASE_URL = 'https://www.jcp.or.jp/akahata/';
+const sleep = (ms) => new Promise((res) => setTimeout(() => res(), ms));
 
 (async () => {
   //
@@ -24,6 +25,7 @@ const BASE_URL = 'https://www.jcp.or.jp/akahata/';
   let html = date ? date.outerHTML : '';
   for (const link of links) {
     const href = (new URL(link.getAttribute('href'), BASE_URL)).href;
+    await sleep(1000);
     const res = await fetch(href);
     const root = parse(await res.text());
     const content = root.querySelector('#content_L1');
@@ -40,6 +42,7 @@ const BASE_URL = 'https://www.jcp.or.jp/akahata/';
       for (const img of content.querySelectorAll('img')) {
         const src = img.getAttribute('src');
         const imgLink = new URL(src, href).href;
+        await sleep(1000);
         const res = await fetch(imgLink);
         const type = res.headers.get('content-type');
         const buf = Buffer.from(await res.arrayBuffer());

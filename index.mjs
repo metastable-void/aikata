@@ -21,7 +21,7 @@ const sleep = (ms) => new Promise((res) => setTimeout(() => res(), ms));
   const root = parse(await res.text());
   const links = root.querySelectorAll('.mokuji_list li.newslist a');
   const date = root.querySelector('.mokuji_list .css5');
-  const dateText = date.textContent.trim();
+  const dateText = date ? date.textContent.trim() : '----/--/--';
   let html = date ? date.outerHTML : '';
   for (const link of links) {
     const href = (new URL(link.getAttribute('href'), BASE_URL)).href;

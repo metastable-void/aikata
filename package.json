@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/metastable-void/aikata.git"
+  },
+  "author": "metastable-void",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "dotenv": "^16.0.1",
